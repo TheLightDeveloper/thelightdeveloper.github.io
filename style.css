@@ -33,7 +33,7 @@ h1 {
 }
 
 h2, h3 {
-    padding-top: 21px;
+    padding-top: 0.5px;
     font-size: 15pt;
     line-height: 1.5em;
     text-align: left;
@@ -82,7 +82,7 @@ ul {
 }
 
 nav ul li {
-    padding: .5em;
+    padding: .05em;
 }
 
 img {
