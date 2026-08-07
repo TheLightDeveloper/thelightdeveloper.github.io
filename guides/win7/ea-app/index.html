@@ -6,7 +6,7 @@
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,700" rel="stylesheet" type="text/css">
-		<link href="/style.css" rel="stylesheet" type="text/css" media="all"> <!-- <a href="/info/index.html">About</a> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -30,7 +30,32 @@
 		<!--<a href="/repo/index.html">Repository</a >-->
         <hr/>
         
-
+		<div class="content">
+			<div class="center">
+				<h1>Patching EA app on Windows 7</h1>
+				Continuing to use EA app after EA's discontinuation and breakage<br>
+			</div><br>
+			<h4>Step 1: Installing EA app</h4>
+			As the name suggests, the first step is to install EA app from EA's site. <br>
+			The installer does not work by default as it will always error with INST-21-25006, so you need to copy your existing install directory from another Windows 10/11 system, dualboot partition, or a virtual machine.<br>
+			<h4 style="color: red">If your EA desktop app was updated in the past, and has both the version and mklink folder, you need to delete the EA Desktop mdlink, move the "EA Desktop" to prior root and delete version folder. It should look like this:</h4>
+			<img src="guide1.png" alt="Explorer directory"><br>
+			
+			<h4>Step 2: Acquiring DLLs files</h4>
+			By default, the EA app requires the following DLLs files that are missing:<br>
+			<code>api-ms-win-downlevel-kernel32-l2-1-0.dll</code><br>
+			<code>api-ms-win-eventing-provider-l1-1-0.dll</code><br>
+			<code>api-ms-win-core-com-l1-1-0.dll</code> (This is not needed, but recommended to avoid having the shutdown to be stuck)<br>
+			You can find these missing files from your system or by downloading this zip file and extracting it to the EA Desktop folder.<br>
+			
+			<h4>Step 3: Patching files</h4>
+			By default, the EA app requires the following DLLs files that are missing:<br>
+			<code>api-ms-win-downlevel-kernel32-l2-1-0.dll</code><br>
+			<code>api-ms-win-eventing-provider-l1-1-0.dll</code><br>
+			<code>api-ms-win-core-com-l1-1-0.dll</code> (This is not needed, but recommended to avoid having the shutdown to be stuck)<br>
+			You can find these missing files from your system or by downloading this zip file and extracting it to the EA Desktop folder.<br>
+			<h2>And that's it! Enjoy!</h2>
+			<h4 style="color: red">This solution is not permanent as the app may force you to install the latest update. You will need to repatch the program and reapply the registry every time if there is a update!</h4>
 	</footer>
     </body>
 </html>
