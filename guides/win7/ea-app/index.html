@@ -33,8 +33,9 @@
 		<div class="content">
 			<div class="center">
 				<h1>Patching EA app on Windows 7</h1>
-				Continuing to use EA app after EA's discontinuation and breakage<br>
-			</div><br>
+				Continuing to use EA app after EA's discontinuation and breakage
+			</div>
+			<h4 style="color: red">This solution is not permanent as the app will force you to install the latest update every other few weeks. You will need to repatch the program and reapply the registry every time if there is a update!</h4>
 			<h4>Step 1: Installing EA app</h4>
 			As the name suggests, the first step is to install EA app from EA's site. <br>
 			The installer does not work by default as it will always error with INST-21-25006, so you need to copy your existing install directory from another Windows 10/11 system, dualboot partition, or a virtual machine.<br>
@@ -49,13 +50,26 @@
 			You can find these missing files from your system or by downloading this zip file and extracting it to the EA Desktop folder.<br>
 			
 			<h4>Step 3: Patching files</h4>
-			By default, the EA app requires the following DLLs files that are missing:<br>
-			<code>api-ms-win-downlevel-kernel32-l2-1-0.dll</code><br>
-			<code>api-ms-win-eventing-provider-l1-1-0.dll</code><br>
-			<code>api-ms-win-core-com-l1-1-0.dll</code> (This is not needed, but recommended to avoid having the shutdown to be stuck)<br>
-			You can find these missing files from your system or by downloading this zip file and extracting it to the EA Desktop folder.<br>
-			<h2>And that's it! Enjoy!</h2>
-			<h4 style="color: red">This solution is not permanent as the app may force you to install the latest update. You will need to repatch the program and reapply the registry every time if there is a update!</h4>
+			This step may seem hard at first, but its really easy to do. Although the executables require both SetProcessMitigationPolicy and GetProcessMitigationPolicy API, they're not really used at all.<br>
+			The following executables files needs to be patched:<br>
+			<code>EALauncher.exe</code><br>
+			<code>EALaunchHelper.exe</code><br>
+			<code>EADesktop.exe</code><br>
+			<code>EACefSubProcess.exe</code><br>
+			<code>EABackgroundService.exe</code><br>
+			If you are playing EA games through Steam, you will need patch these executables as well.<br>
+			<code>EASteamProxy.exe</code><br>
+			<code>Link2EA.exe</code><br><br>
+			For this step, open the executable file in CFF Explorer, navigate to the Import Directory -> KERNEL32.dll in the screenshot below and then change both SetProcessMitigationPolicy and GetProcessMitigationPolicy to a different API.<br>
+			(Ex. SetProcessMitigationPolicy -> GetProcAddress and GetProcessMitigationPolicy -> GetModuleFileNameA)<br>
+			<img src="cffexplorer.png" alt="CFF Explorer"><br>
+
+			<h4>Step 4: Applying registry files</h4>
+			Download this zip file, extract it, and apply the registries. After that, reboot your computer in order for the EA Background service to take effect.<br>
+			After rebooting, run EADeskop.exe from the install directory. If the login prompt appears correctly, you did everything correctly.<br>
+			<h4>And that's it! Enjoy!</h4>
+	
+			<img src="bf4win7.png" alt="Battlefield 4 with patched EA app on Windows 7">
 	</footer>
     </body>
 </html>
