@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tools - Light's website</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="tld">
+        <h2 class="">TheLightDeveloper's website</h2>
+		<!-- Navigation bar start -->
+		<div class="topnav">
+		<a href="/index.html">Home</a>
+		<a href="/files/index.html">Files</a>
+		<a href="/tools/index.html">Tools</a>
+		<a href="/gallery/index.html">Gallery</a>
+		<a href="/guides/index.html">Guides</a>
+		<a href="/blog/index.html">Blog</a>
+        <hr/>
+        <nav>
+		<!-- Navigation bar end -->
+		<!-- Site start -->
+		<center>
+		<h1>Roblox's Asset Delivery downloader</h1>
+		Based off from gev's downloader
+			<br>
+			<br>
+			<br>
+			<input type="text" id="placeID" value="" placeholder="Place ID">
+			<input type="text" id="placeVersion" value="" placeholder="Place Version">
+			<br>
+			<br>
+			<button onclick="dlNormal()">Download</button>
+			<button onclick="dlLatest()">Download Latest</button>
+			<br>
+			<button onclick="copyNormal()">Copy Link</button>
+			<button onclick="copyLatest()">Copy Latest Link</button>
+			<p id="demo"></p>
+			<script>
+				function dlNormal() {
+				  var x = document.getElementById("placeID").value;
+				  var y = document.getElementById("placeVersion").value;
+				  window.open('https://assetdelivery.roblox.com/v1/asset?id=' + x + '&version=' + y);
+				}
+				function dlLatest() {
+				  var x = document.getElementById("placeID").value;
+				  window.open('https://assetdelivery.roblox.com/v1/asset?id=' + x);
+				}
+				function copyNormal() {
+				  var x = document.getElementById("placeID").value;
+				  var y = document.getElementById("placeVersion").value;
+				  navigator.clipboard.writeText('https://assetdelivery.roblox.com/v1/asset?id=' + x + '&version=' + y);
+				  alert("Copied the Roblox place to the clipboard.");
+				}
+				function copyLatest() {
+				  var x = document.getElementById("placeID").value;
+				  navigator.clipboard.writeText('https://assetdelivery.roblox.com/v1/asset?id=' + x);
+				  alert("Copied the Roblox place to the clipboard.");
+				}
+			</script>
+			<small>When downloaded, it will have no proper file name. Make sure to rename the file as a .rbxl file.</small>
+			<br>
+			<h4>Limitations</h4>
+			<table style="width: 600px;">
+				<tbody>
+					<tr>
+						<td>1. This downloader can only download uncopylocked places or places you have access to.</td>
+					</tr>
+					<tr>
+						<td>2. The place versions only go back to 2008 so 2006-2007 games would only be available if the place was not updated until after 2008 or at all.</td>
+					</tr>
+					<tr>
+						<td>3. The file names of the places are just unreadable nonsense. You will have to suffix the file with ".rbxl" for it to be recognized as a Roblox file.</td>
+					</tr>
+				</tbody>
+			</table>
+		</center>
+		</div>
+    </body>
+</html>
