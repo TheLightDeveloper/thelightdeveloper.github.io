@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Installing Steam on macOS 10.11 - 10.14 - TheLightDeveloper's website</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="tld">
+        <h2 class="">TheLightDeveloper's website</h2>
+		<!-- Navigation bar start -->
+		<div class="topnav">
+		<a href="/index.html">Home</a>
+		<a href="/files/index.html">Files</a>
+		<a href="/tools/index.html">Tools</a>
+		<a href="/gallery/index.html">Gallery</a>
+		<a href="/guides/index.html">Guides</a>
+		<a href="/blog/index.html">Blog</a>
+        <hr/>
+        <nav>
+		<!-- Navigation bar end -->
+		<!-- Site start -->
+		<div class="content">
+			<center>
+				<h1>Installing Steam on macOS 10.11 - 10.14</h1>
+				Continuing to use Steam on older macOSes after's Valve discontinuation
+			</center><br>
+			<i>This guide is based off from <a href="https://forums.macrumors.com/threads/making-steam-work-again-on-unsupported-macos-after-discontinuation.2446311/">my MacRumors guide</a> and is also partially based off from <a href="https://blog.lightwo.net/steam-client-downgrades-survival-kit.html">lightwo’s Blog: Steam Client Downgrades & Survival Kit</a> to only include macOS related instructions.</i> 
+			<h4 style="color: red">On May 2025, Valve has changed the game compression/decompression from LZMA to ZSTD format, meaning that any games updated past this date cannot install properly under this format. You can try using a updated macOS to try copying the game files over, or using 3rd party programs such as DepotDownloader to download the files, though I cannot guarantee that these methods may work long term.</h4>
+
+			<h4>Step 1: Installing Steam</h4>
+			Install Steam from Valve's website. Do not the open the app after dragging it to the application folder as by default, it will not download the last client version for your desired OS.<br>
+			
+			<h4>Step 2: Downloading the last supported client</h4>
+			Open terminal window and then run the following command depending on what macOS you are running:<br><br>
+	
+			macOS 10.13 - 10.14:<br>
+			<code>open -a Steam --args -forcesteamupdate -forcepackagedownload -overridepackageurl https://web.archive.org/web/20241107150153if_/media.steampowered.com/client -exitsteam</code><br><br>
+			
+			macOS 10.11 - 10.12:<br>
+			<code>open -a Steam --args -forcesteamupdate -forcepackagedownload -overridepackageurl https://web.archive.org/web/20240113112425if_/media.steampowered.com/client -exitsteam</code><br>
+			
+			<h4 style="color: red">There is a chance that Steam could corrupt itself after manual install. If this happens, you will need to completely delete Steam.app and its contents through AppCleaner.</h4>
+			
+			<h4>Step 3: Blocking client updates (optional)</h4>
+			While Steam does detect older OSes and prevent itself from downloading updates, it is recommended to block client updates to prevent unintentional bricking.<br>
+			Create a steam.cfg file on on /Applications/Steam.app/Contents/MacOS with this text:<br><br>
+			<code>BootStrapperInhibitAll=enable</code><br>
+			<code>BootStrapperForceSelfUpdate=disable</code><br>
+			
+			<h4>Enjoy!</h4>
+			<img src="steam1014.png" width="1000" height="625">
+			<img src="steam1013.png" width="1000" height="625">
+			<img src="steam1012.png" width="1000" height="625">
+    </body>
+</html>
