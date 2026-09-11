@@ -23,7 +23,7 @@
 		<!-- Site start -->
 		<div class="content">
 			<center>
-				<h1>Installing Steam on macOS 10.11 - 10.14</h1>
+				<h1>Installing Steam on macOS 10.11 - 10.15</h1>
 				Continuing to use Steam on older macOSes after's Valve discontinuation
 			</center><br>
 			<i>This guide is based off from <a href="https://forums.macrumors.com/threads/making-steam-work-again-on-unsupported-macos-after-discontinuation.2446311/">my MacRumors guide</a> and is also partially based off from <a href="https://blog.lightwo.net/steam-client-downgrades-survival-kit.html">lightwo’s Blog: Steam Client Downgrades & Survival Kit</a> to only include macOS related instructions.</i> 
@@ -34,6 +34,9 @@
 			
 			<h4>Step 2: Downloading the last supported client</h4>
 			Open terminal window and then run the following command depending on what macOS you are running:<br><br>
+			
+			macOS 10.15:<br>
+			<code>open -a Steam --args -forcesteamupdate -forcepackagedownload -overridepackageurl https://web.archive.org/web/20260619if_/media.steampowered.com/client -exitsteam </code><br><br>
 	
 			macOS 10.13 - 10.14:<br>
 			<code>open -a Steam --args -forcesteamupdate -forcepackagedownload -overridepackageurl https://web.archive.org/web/20241107150153if_/media.steampowered.com/client -exitsteam</code><br><br>
@@ -43,7 +46,7 @@
 			
 			<h4 style="color: red">There is a chance that Steam could corrupt itself after manual install. If this happens, you will need to completely delete Steam.app and its contents through AppCleaner.</h4>
 			
-			<h4>Step 3: Blocking client updates (optional)</h4>
+			<h4>Step 3: Blocking client updates (optional for 10.14 and older, highly required for 10.15)</h4>
 			While Steam does detect older OSes and prevent itself from downloading updates, it is recommended to block client updates to prevent unintentional bricking.<br>
 			Create a steam.cfg file on on /Applications/Steam.app/Contents/MacOS with this text:<br><br>
 			<code>BootStrapperInhibitAll=enable</code><br>
