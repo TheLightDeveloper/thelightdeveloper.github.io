@@ -26,7 +26,7 @@
 				<h1>Patching EA app on Windows 7</h1>
 				Continuing to use EA app after EA's discontinuation and breakage
 			</center>
-			<h4 style="color: red">As of August 28, EA has recently updated their CEF to a newer version, meaning that there will be no easy way to patch this app by the time the new update is fully enforced.</h4>
+			<h4 style="color: red">This solution is not permanent as the app will force you to install the latest update every other few weeks. You will need to repatch the program every time if there is a new update!</h4>
 			<h4>Step 1: Installing EA app</h4>
 			As the name suggests, the first step is to install EA app from EA's site. <br>
 			The installer does not work by default as it will always error with INST-21-25006, so you will need to copy the entire "Electronic Arts" install directory from another Windows 10/11 system, dualboot partition, or a virtual machine, and then paste it to the Program Files directory.<br>
@@ -41,24 +41,31 @@
 			You can find these missing files through the internet (may vary) or by downloading <a href="https://files.catbox.moe/zj65zr.7z">this zip file</a> and extracting it to the EA Desktop folder.<br>
 			
 			<h4>Step 3: Patching files</h4>
-			This step may seem hard at first, but its really easy to do. Although the executables require both SetProcessMitigationPolicy and GetProcessMitigationPolicy API, they're not really used at all.<br>
+			This step may seem hard at first, but its really easy to do so. Despite the executables require both SetProcessMitigationPolicy and GetProcessMitigationPolicy functions, they're not really used at all.<br>
 			The following executable files needs to be patched:<br>
 			<code>EALauncher.exe</code><br>
 			<code>EALaunchHelper.exe</code><br>
 			<code>EADesktop.exe</code><br>
 			<code>EACefSubProcess.exe</code><br>
+			<code>EALocalHostSvc.exe</code>
 			<code>EABackgroundService.exe</code><br><br>
-			If you played EA games through Steam, you will need patch these executables as well:<br>
+			If you played EA games through Steam, you will need to patch these executables as well:<br>
 			<code>EASteamProxy.exe</code><br>
-			<code>Link2EA.exe</code><br><br>
-			For this step, open the executable file in CFF Explorer, navigate to the Import Directory -> KERNEL32.dll in the screenshot below and then change both SetProcessMitigationPolicy and GetProcessMitigationPolicy to a different API.<br>
-			(Ex. SetProcessMitigationPolicy -> GetProcAddress and GetProcessMitigationPolicy -> GetModuleFileNameA)<br>
+			<code>EASteamLauncher.exe</code><br>
+			<code>EASteamAuthHelper.exe</code><br>
+			<code>Link2EA.exe</code><br>
+			For this step, open the executable file in CFF Explorer, navigate to the Import Directory -> KERNEL32.dll in the screenshot below and then change both SetProcessMitigationPolicy and GetProcessMitigationPolicy to a different function.<br>
+			(Ex. SetProcessMitigationPolicy and GetProcessMitigationPolicy -> GetProcAddress)<br>
 			<img src="cffexplorer.png" alt="CFF Explorer"><br>
 
 			<h4>Step 4: Applying registry files</h4>
 			Download <a href="https://files.catbox.moe/4mcyw9.7z">this zip file</a>, extract it, and apply the registries. After that, reboot your computer in order for the EA Background service to take effect.<br><br>
 			After rebooting, run EADeskop.exe from the install directory. If the login prompt appears correctly, you did everything correctly.<br>
 			<h4>Enjoy!</h4>
+			
+			<h4>Troubleshooting:</h4>
+			1. If your EA app was manually updated by running <code>EAUpdater.exe</code>, you will need to completely uninstall the app as doing so will permanently brick the app with DiscardVirtualMemory missing function error.<br>
+			2. If your games started crashing on startup, delete this registry key: <code>HKEY_LOCAL_MACHINE\SOFTWARE\Electronic Arts\EA Desktop</code><br>
 			<img src="bf4win7.png" alt="Battlefield 4 with patched EA app on Windows 7">
     </body>
 </html>
