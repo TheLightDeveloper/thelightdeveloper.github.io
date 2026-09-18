@@ -53,7 +53,7 @@
 			<code>EASteamProxy.exe</code><br>
 			<code>EASteamLauncher.exe</code><br>
 			<code>EASteamAuthHelper.exe</code><br>
-			<code>Link2EA.exe</code><br>
+			<code>Link2EA.exe</code><br><br>
 			For this step, open the executable file in CFF Explorer, navigate to the Import Directory -> KERNEL32.dll in the screenshot below and then change both SetProcessMitigationPolicy and GetProcessMitigationPolicy to a different function.<br>
 			(Ex. SetProcessMitigationPolicy and GetProcessMitigationPolicy -> GetProcAddress)<br>
 			<img src="cffexplorer.png" alt="CFF Explorer"><br>
@@ -62,10 +62,10 @@
 			Download <a href="https://files.catbox.moe/4mcyw9.7z">this zip file</a>, extract it, and apply the registries. After that, reboot your computer in order for the EA Background service to take effect.<br><br>
 			After rebooting, run EADeskop.exe from the install directory. If the login prompt appears correctly, you did everything correctly.<br>
 			<h4>Enjoy!</h4>
-			
+			<img src="bf4win7.png" alt="Battlefield 4 with patched EA app on Windows 7">
+
 			<h4>Troubleshooting:</h4>
 			1. If your EA app was manually updated by running <code>EAUpdater.exe</code>, you will need to completely uninstall the app as doing so will permanently brick the app with DiscardVirtualMemory missing function error.<br>
-			2. If your games started crashing on startup, delete this registry key: <code>HKEY_LOCAL_MACHINE\SOFTWARE\Electronic Arts\EA Desktop</code><br>
-			<img src="bf4win7.png" alt="Battlefield 4 with patched EA app on Windows 7">
+			2. If your games started crashing on startup, delete this registry key: <code>HKEY_LOCAL_MACHINE\SOFTWARE\Electronic Arts\EA Desktop</code><br><br>
     </body>
 </html>
