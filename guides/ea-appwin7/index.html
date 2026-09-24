@@ -23,27 +23,29 @@
 		<!-- Site start -->
 		<div class="content">
 			<center>
-				<h1>Patching EA app on Windows 7</h1>
-				Continuing to use EA app after EA's discontinuation and breakage
+			<h1>EA app on Windows 7</h1>
+			Continuing to use EA app after EA's discontinuation and breakage
 			</center>
+
 			<h4>Step 1: Installing EA app</h4>
-			As the name suggests, the first step is to install EA app from EA's site. <br>
-			The installer does not work by default as it will always error with INST-21-25006, so you will need to copy the entire "Electronic Arts" install directory from another Windows 10/11 system, dualboot partition, or a virtual machine, and then paste it to the Program Files directory.<br>
-			<h4 style="color: red">If your EA desktop app was updated in the past, and has both the version and mklink folder, you need to delete the EA Desktop mdlink, move the "EA Desktop" to prior root and delete version folder. It should look like this:</h4>
+			By default, setup does not work as attempting to install normally will always error out with INST-21-25006. This also applies you're trying to update upon being forced to do so.<br><br>
+			
+			This can be fixed copying the entire "Electronic Arts" install folder on your Windows 10/11 PC/VM and then paste it to the Program Files directory.<br>
+			<h4 style="color: red">If your EA app was updated and has both the version and mklink folder, delete the EA Desktop mdlink, move the "EA Desktop" inside "13.XXXXX.XXXX-XXXXXXXXXX" folder to prior root and delete that version folder. It should look like this:</h4>
 			<img src="guide1.png" alt="Explorer directory"><br>
 			
 			<h4>Step 2: Acquiring DLLs files and applying registry files</h4>
 			By default, the EA app needs three missing DLLs and as well as two registry dependencies for EABackgroundService and WOW6432Node.<br><br>
-			<a href="https://thelightdeveloper.github.io/guides/ea-appwin7/EAappneededfiles.7z">Download this zip file</a> and extract the DLLs to the EA Desktop folder and merge the registry files.<br>
+			<a href="https://thelightdeveloper.github.io/guides/ea-appwin7/EAappneededfiles.zip">Download this zip file</a> and extract the DLLs to the EA Desktop folder and merge the registry files.<br>
 			
 			<h4>Step 3: Getting EA app to work</h4>
-			<h4>Method 1: kernel32.dll and k32_ex.dll (Windows 7 only)</h4>
+			<h4>Method 1: Replacing system files (Windows 7 only)</h4>
 			This is a quick and dirty method that is suitable only for those who don't want to patch out the calls everytime and is running the final update (2026-01) released for Windows 7. Credit to EAZY BLACK for the files.<br><br>
-			From the same zip folder you extracted, go to Method 1 folder, and extract two files to the System32 folder.<br>
+			From the same zip folder you extracted, go to Method 1 folder, and extract two files (kernel32.dll and k32_ex.dll) to the System32 folder.<br>
 			
-			<h4>Method 2: Patching out the call to GetProcessMitigationPolicy and SetProcessMitigationPolicy</h4>
-			This method is suitable for those who are not conformable with replacing system files or is running Windows 8. Keep in mind that you will need to repatch the program every time if there is a new update.<br><br>
-			The following executable files needs to be patched:<br>
+			<h4>Method 2: Manual patching</h4>
+			This method is suitable for those who are not conformable with replacing system files or is running Windows 8. Do note that you will need to repatch the program every time if there is a new update, which occurs every other few weeks.<br><br>
+			The following executables needs to be patched:<br>
 			<code>EALauncher.exe</code><br>
 			<code>EALaunchHelper.exe</code><br>
 			<code>EADesktop.exe</code><br>
@@ -55,17 +57,18 @@
 			<code>EASteamLauncher.exe</code><br>
 			<code>EASteamAuthHelper.exe</code><br>
 			<code>Link2EA.exe</code><br><br>
+
 			For this step, open the executable file in CFF Explorer, navigate to the Import Directory -> KERNEL32.dll in the screenshot below and then change both SetProcessMitigationPolicy and GetProcessMitigationPolicy to a different function.<br>
-			(Ex. SetProcessMitigationPolicy and GetProcessMitigationPolicy -> GetProcAddress)<br>
+			(Ex. SetProcessMitigationPolicy and GetProcessMitigationPolicy -> GetProcAddress)<br><br>
 			<img src="cffexplorer.png" alt="CFF Explorer"><br><br>
 
 			After doing either of these methods, restart your computer in order for background services to work.
 			
 			<h4>Enjoy!</h4>
-			<img src="bf4win7.png" alt="Battlefield 4 with patched EA app on Windows 7">
-
+			
 			<h4>Troubleshooting:</h4>
 			1. If your EA app was manually updated by running <code>EAUpdater.exe</code>, you will need to completely uninstall the app as doing so will permanently brick the app with DiscardVirtualMemory missing function error.<br>
 			2. If your games started crashing on startup, delete this registry key: <code>HKEY_LOCAL_MACHINE\SOFTWARE\Electronic Arts\EA Desktop</code><br><br>
+			<img src="bf4win7.png" alt="Battlefield 4 with patched EA app on Windows 7">
     </body>
 </html>
